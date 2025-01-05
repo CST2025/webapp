@@ -1,0 +1,153 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    background-color: #e9f5ff;
+    color: #212121;
+}
+
+header {
+    background-color: #6200EE;
+    color: white;
+    width: 80vw;
+    margin-left: 10vw;
+    margin-top: 2.5vh;
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
+    border-radius: 1vh;
+
+    text-align: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2vw;
+}
+
+.container {
+    max-width: calc(80vw - 2.5vh);
+    margin-left: 10vw;
+    padding: 2rem 1rem;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 1vh;
+    box-shadow: 0px 0.5vh 1vh rgba(0, 0, 0, 0.2);
+}
+
+.schedule-table th, .schedule-table td {
+    border: 1px solid #E0E0E0;
+    padding: 1rem;
+    text-align: center;
+}
+
+.schedule-table th {
+    background-color: #BB86FC;
+    color: white;
+    font-weight: 500;
+}
+
+.schedule-table tr:nth-child(even) {
+    background-color: #F5F5F5;
+}
+
+.current-week {
+    background-color: #FFEB3B;
+}
+
+.notification {
+    background-color: #FF5722;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0px 0.5vh 1vh rgba(0, 0, 0, 0.2);
+}
+
+.section {
+    margin-bottom: 3rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #6200EE;
+    color: white;
+    font-size: 0.9rem;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.encyclicals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.encyclical {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.encyclical:hover {
+    transform: translateY(-1vh);
+    box-shadow: 0px 0.5vh 1vh rgba(0, 0, 0, 0.2);
+}
+
+.encyclical h3 {
+    margin-top: 0;
+    color: #6200EE;
+    font-size: 1.2rem;
+}
+
+.encyclical p {
+    color: #757575;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .schedule-table th, .schedule-table td {
+        padding: 0.6rem;
+    }
+
+    .notification {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem 0.5rem;
+    }
+
+    .encyclical {
+        padding: 1rem;
+    }
+
+    .encyclical h3 {
+        font-size: 1rem;
+    }
+
+    .encyclical p {
+        font-size: 0.85rem;
+    }
+}

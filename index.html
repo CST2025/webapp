@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CST '25 Reading Group</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <h1>CST '25 Reading Group</h1>
+    </header>
+
+    <div class="container">
+        <div class="section notification" id="notification">
+            <strong>Notification:</strong> No meeting this week. See you next week!
+        </div>
+
+        <div class="section">
+            <h2>Programme Overview</h2>
+            <h3>Ordinary Time</h3>
+            <table class="schedule-table" id="ot">
+                <thead>
+                    <tr>
+                        <th>Dates</th>
+                        <th>Programme for this week</th>
+                        <th>Meeting</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule">
+                    <!-- Schedule rows will be added dynamically -->
+                </tbody>
+            </table>
+
+            <h3>Lent</h3>
+            <table class="schedule-table" id="lt">
+                <thead>
+                    <tr>
+                        <th>Dates</th>
+                        <th>Programme for this week</th>
+                        <th>Meeting</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule">
+                    <!-- Schedule rows will be added dynamically -->
+                </tbody>
+            </table>
+
+            <h3>Paschaltide</h3>
+            <table class="schedule-table" id="pt">
+                <thead>
+                    <tr>
+                        <th>Dates</th>
+                        <th>Programme for this week</th>
+                        <th>Meeting</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule">
+                    <!-- Schedule rows will be added dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Encyclicals</h2>
+            <div class="encyclicals" id="encyclicals">
+                <!-- Encyclicals will be added dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; Mel Visscher for CST '25
+    </footer>
+
+    <script>
+        const schedule = [
+            { week: 1, start: new Date(2025, 0, 12), dates: "Jan. 12 - Jan. 18", season: "OT", programme: "Rerum Novarum - Part 1", meeting: "" },
+            { week: 2, start: new Date(2025, 0, 19),  dates: "Jan. 19 - Jan. 25", season: "OT", programme: "Rerum Novarum - Part 2", meeting: "ONLINE" },
+            { week: 3, start: new Date(2025, 0, 26),  dates: "Jan. 26 - Feb. 01", season: "OT", programme: "Quadragesimo Anno - Part 1", meeting: "" },
+            { week: 4, start: new Date(2025, 1, 2),  dates: "Feb. 02 - Feb. 08", season: "OT", programme: "Quadragesimo Anno - Part 2", meeting: "ONLINE" },
+            { week: 5, start: new Date(2025, 1, 9),  dates: "Feb. 09 - Feb. 15", season: "OT", programme: "Mater et Magistra - Part 1", meeting: "" },
+            { week: 6, start: new Date(2025, 1, 16),  dates: "Feb. 16 - Feb. 22", season: "OT", programme: "Mater et Magistra - Part 2", meeting: "ONLINE" },
+            { week: 7, start: new Date(2025, 1, 23),  dates: "Feb. 23 - Mar. 01", season: "OT", programme: "Centesimus Annus - Part 1", meeting: "" },
+            { week: 8, start: new Date(2025, 2, 2),  dates: "Mar. 02 - Mar. 08", season: "OT", programme: "Centesimus Annus - Part 2", meeting: "IN PERSON" },
+            { week: 1, start: new Date(2025, 2, 9),  dates: "Mar. 09 - Mar. 15", season: "OT", programme: "Compendium - Chapter 5", meeting: "" },
+            { week: 2, start: new Date(2025, 2, 16),  dates: "Mar. 16 - Mar. 24", season: "OT", programme: "Compendium - Chapter 6", meeting: "" },
+            { week: 3, start: new Date(2025, 2, 23),  dates: "Mar. 23 - Mar. 29", season: "OT", programme: "Compendium - Chapter 7", meeting: "ONLINE" },
+            { week: 4, start: new Date(2025, 2, 30),  dates: "Mar. 30 - Apr. 05", season: "OT", programme: "Compendium - Chapter 8", meeting: "" },
+            { week: 5, start: new Date(2025, 3, 6),  dates: "Apr. 06 - Apr. 12", season: "OT", programme: "Compendium - Chapter 9", meeting: "" },
+            { week: 6, start: new Date(2025, 3, 13),  dates: "Apr. 13 - Apr. 19", season: "OT", programme: "Compendium - Chapter 10 & 11", meeting: "IN PERSON" },
+            { week: 1, start: new Date(2025, 3, 20),  dates: "Apr. 20 - Apr. 26", season: "OT", programme: "Evangelium Vitae", meeting: "ONLINE" },
+            { week: 2, start: new Date(2025, 3, 27),  dates: "Apr. 27 - May 03", season: "OT", programme: "Familiaris Consortio", meeting: "ONLINE" },
+            { week: 3, start: new Date(2025, 4, 4),  dates: "May 04 - May 10", season: "OT", programme: "Caritas in Veritate", meeting: "ONLINE" },
+            { week: 4, start: new Date(2025, 4, 11),  dates: "May 11 - May 17", season: "OT", programme: "Populorum Progressio", meeting: "ONLINE" },
+            { week: 5, start: new Date(2025, 4, 18),  dates: "May 18 - May 24", season: "OT", programme: "Laborem Exercens", meeting: "ONLINE" },
+            { week: 6, start: new Date(2025, 4, 25),  dates: "May 25 - May 31", season: "OT", programme: "sollicitudo Rei Socialis", meeting: "ONLINE" },
+            { week: 7, start: new Date(2025, 5, 1),  dates: "Jun. 1 - Jun. 7", season: "OT", programme: "Laudato Si\' & Dignitas Infinita", meeting: "IN PERSON" }
+        ];
+
+        const schedule_ot = [
+
+            { week: 1, start: new Date(2025, 0, 12), dates: "Jan. 12 - Jan. 18", season: "OT", programme: "Rerum Novarum - Part 1", meeting: "" },
+            { week: 2, start: new Date(2025, 0, 19),  dates: "Jan. 19 - Jan. 25", season: "OT", programme: "Rerum Novarum - Part 2", meeting: "ONLINE" },
+            { week: 3, start: new Date(2025, 0, 26),  dates: "Jan. 26 - Feb. 01", season: "OT", programme: "Quadragesimo Anno - Part 1", meeting: "" },
+            { week: 4, start: new Date(2025, 1, 2),  dates: "Feb. 02 - Feb. 08", season: "OT", programme: "Quadragesimo Anno - Part 2", meeting: "ONLINE" },
+            { week: 5, start: new Date(2025, 1, 9),  dates: "Feb. 09 - Feb. 15", season: "OT", programme: "Mater et Magistra - Part 1", meeting: "" },
+            { week: 6, start: new Date(2025, 1, 16),  dates: "Feb. 16 - Feb. 22", season: "OT", programme: "Mater et Magistra - Part 2", meeting: "ONLINE" },
+            { week: 7, start: new Date(2025, 1, 23),  dates: "Feb. 23 - Mar. 01", season: "OT", programme: "Centesimus Annus - Part 1", meeting: "" },
+            { week: 8, start: new Date(2025, 2, 2),  dates: "Mar. 02 - Mar. 08", season: "OT", programme: "Centesimus Annus - Part 2", meeting: "IN PERSON" }
+
+        ]
+
+        const schedule_lt =  [
+
+            { week: 1, start: new Date(2025, 2, 9),  dates: "Mar. 09 - Mar. 15", season: "OT", programme: "Compendium - Chapter 5", meeting: "" },
+            { week: 2, start: new Date(2025, 2, 16),  dates: "Mar. 16 - Mar. 24", season: "OT", programme: "Compendium - Chapter 6", meeting: "" },
+            { week: 3, start: new Date(2025, 2, 23),  dates: "Mar. 23 - Mar. 29", season: "OT", programme: "Compendium - Chapter 7", meeting: "ONLINE" },
+            { week: 4, start: new Date(2025, 2, 30),  dates: "Mar. 30 - Apr. 05", season: "OT", programme: "Compendium - Chapter 8", meeting: "" },
+            { week: 5, start: new Date(2025, 3, 6),  dates: "Apr. 06 - Apr. 12", season: "OT", programme: "Compendium - Chapter 9", meeting: "" },
+            { week: 6, start: new Date(2025, 3, 13),  dates: "Apr. 13 - Apr. 19", season: "OT", programme: "Compendium - Chapter 10 & 11", meeting: "IN PERSON" }
+        
+        ]
+
+        const schedule_pt = [
+            { week: 1, start: new Date(2025, 3, 20),  dates: "Apr. 20 - Apr. 26", season: "OT", programme: "Evangelium Vitae", meeting: "ONLINE" },
+            { week: 2, start: new Date(2025, 3, 27),  dates: "Apr. 27 - May 03", season: "OT", programme: "Familiaris Consortio", meeting: "ONLINE" },
+            { week: 3, start: new Date(2025, 4, 4),  dates: "May 04 - May 10", season: "OT", programme: "Caritas in Veritate", meeting: "ONLINE" },
+            { week: 4, start: new Date(2025, 4, 11),  dates: "May 11 - May 17", season: "OT", programme: "Populorum Progressio", meeting: "ONLINE" },
+            { week: 5, start: new Date(2025, 4, 18),  dates: "May 18 - May 24", season: "OT", programme: "Laborem Exercens", meeting: "ONLINE" },
+            { week: 6, start: new Date(2025, 4, 25),  dates: "May 25 - May 31", season: "OT", programme: "sollicitudo Rei Socialis", meeting: "ONLINE" },
+            { week: 7, start: new Date(2025, 5, 1),  dates: "Jun. 1 - Jun. 7", season: "OT", programme: "Laudato Si\' & Dignitas Infinita", meeting: "IN PERSON" }
+        ];
+
+        const encyclicals = [
+            { website: "https://www.vatican.va/content/leo-xiii/en/encyclicals/documents/hf_l-xiii_enc_15051891_rerum-novarum.html", title: "Rerum Novarum", translation: "Of Revolutionary Change"},
+            { website: "https://www.vatican.va/content/pius-xi/en/encyclicals/documents/hf_p-xi_enc_19310515_quadragesimo-anno.html", title: "Quadragesimo Anno", translation: "In the Fourtieth Year"},
+            { website: "https://www.vatican.va/content/john-xxiii/en/encyclicals/documents/hf_j-xxiii_enc_15051961_mater.html", title: "Mater et Magistra", translation: "Mother and Teacher"},
+            { website: "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_01051991_centesimus-annus.html", title: "Centesimus Annus", translation: "For the Hundredth Year"},
+            { website: "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_25031995_evangelium-vitae.html", title: "Evangelium vitae", translation: "The Gospel of Life"},
+            { website: "https://www.vatican.va/content/john-paul-ii/en/apost_exhortations/documents/hf_jp-ii_exh_19811122_familiaris-consortio.html", title: "Familiaris Consortio", translation: "The Fellowship of the Family"},
+            { website: "https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20090629_caritas-in-veritate.html", title: "Caritas in Veritate", translation: "Charity in Truth"},
+            { website: "https://www.vatican.va/content/paul-vi/en/encyclicals/documents/hf_p-vi_enc_26031967_populorum.html", title: "Populorum Progressio", translation: "The Development of Peoples"},
+            { website: "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_14091981_laborem-exercens.html", title: "Laborem exercens", translation: "Through Work"},
+            { website: "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_30121987_sollicitudo-rei-socialis.html", title: "Sollicitudo Rei Socialis", translation: "The Social Concern"},
+            { website: "https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html", title: "Laudato Si\'", translation: "Praise Be to You"},
+            { website: "https://www.vatican.va/roman_curia/congregations/cfaith/documents/rc_ddf_doc_20240402_dignitas-infinita_en.html", title: "Dignitas Infinita", translation: "Infinite Dignity"},
+            { website: "https://www.vatican.va/roman_curia/pontifical_councils/justpeace/documents/rc_pc_justpeace_doc_20060526_compendio-dott-soc_en.html", title: "Compendium of the Social Doctrine of the Church", translation: "St. Pope John Paul II"}
+        ];
+
+        const schedule_table_ot = document.getElementById("ot");
+        schedule_ot.forEach(entry => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${entry.dates}</td>
+                <td>${entry.programme}</td>
+                <td>${entry.meeting}</td>
+            `;
+            row.id = entry.dates
+            schedule_table_ot.appendChild(row);
+        });
+
+        const schedule_table_lt = document.getElementById("lt");
+        schedule_lt.forEach(entry => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${entry.dates}</td>
+                <td>${entry.programme}</td>
+                <td>${entry.meeting}</td>
+            `;
+            row.id = entry.dates
+            schedule_table_lt.appendChild(row);
+        });
+
+        const schedule_table_pt = document.getElementById("pt");
+        schedule_pt.forEach(entry => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${entry.dates}</td>
+                <td>${entry.programme}</td>
+                <td>${entry.meeting}</td>
+            `;
+            row.id = entry.dates
+            schedule_table_pt.appendChild(row);
+        });
+
+        const encyclicalsDiv = document.getElementById("encyclicals");
+        encyclicals.forEach(entry => {
+            const card = document.createElement("div");
+            card.className = "encyclical";
+            card.innerHTML = `
+                <h3>${entry.title}</h3>
+                <a href="${entry.website}"><p>${entry.translation}</p></a>
+            `;
+            encyclicalsDiv.appendChild(card);
+        });
+
+        // Set notification
+
+        current_date = new Date();
+        console.log(current_date)
+
+        for (let i = 0; i < Object.keys(schedule).length; i++) {
+
+            if (current_date < new Date(2025, 0, 12)) {
+
+                document.getElementById("notification").innerHTML = "<strong>Notification:</strong> The programme has not yet started"
+                break;
+
+            }
+
+            let start_date = schedule[Object.keys(schedule)[i]]["start"]
+            console.log(start_date)
+
+            if (current_date < start_date) {
+
+                console.log("Found current week!")
+
+                let current_programme = schedule[Object.keys(schedule)[i - 1]]["programme"]
+                let current_meeting = schedule[Object.keys(schedule)[i - 1]]["meeting"]
+
+                if (current_meeting == "") {
+
+                    current_meeting = "There is <b>no meeting</b> this week."
+
+                } else {
+
+                    current_meeting = "This week, the meeting will be <b>" + current_meeting + "</b>."
+
+                }
+
+                document.getElementById(schedule[Object.keys(schedule)[i - 1]]["dates"]).style.background = "lightcoral";
+                document.getElementById("notification").innerHTML = `<strong>Notification:</strong> The programme for this week is <b>${current_programme}</b>! ${current_meeting}`
+
+                break;
+
+            }
+            
+            
+
+        }
+    </script>
+</body>
+</html>
